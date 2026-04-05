@@ -27,5 +27,19 @@ CREATE INDEX idx_email ON users(email);
 CREATE INDEX idx_role ON users(role);
 CREATE INDEX idx_created_at ON users(created_at);
 
+-- Create exam_rooms table
+CREATE TABLE IF NOT EXISTS exam_rooms (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    subject VARCHAR(100) NOT NULL,
+    room_code VARCHAR(20) NOT NULL UNIQUE,
+    created_by INT NOT NULL,
+    duration INT NOT NULL COMMENT 'Duration in minutes',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE CASCADE,
+    INDEX idx_room_code (room_code),
+    INDEX idx_created_by (created_by)
+);
+
 -- Display success message
 SELECT 'Database and tables created successfully!' as message;

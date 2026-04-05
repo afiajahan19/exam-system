@@ -48,12 +48,18 @@ requireLogin();
                 <?php elseif ($_SESSION['user_role'] == 'teacher'): ?>
                     <div class="teacher-actions">
                         <h3>Teacher Actions:</h3>
-                        <p>Teacher functionality will be implemented here.</p>
+                        <div class="action-links">
+                            <a href="../teacher/exam_rooms.php" class="btn btn-primary">Manage Exam Rooms</a>
+                            <p style="margin-top: 10px; color: #666;">Create and manage exam rooms for your students.</p>
+                        </div>
                     </div>
                 <?php else: ?>
                     <div class="student-actions">
                         <h3>Student Actions:</h3>
-                        <p>Student functionality will be implemented here.</p>
+                        <div class="action-links">
+                            <a href="../student/join_exam.php" class="btn btn-success">Join Exam Room</a>
+                            <p style="margin-top: 10px; color: #666;">Enter a room code to join an exam.</p>
+                        </div>
                     </div>
                 <?php endif; ?>
             </div>

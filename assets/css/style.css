@@ -98,6 +98,10 @@ body {
     background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
 }
 
+.btn-success {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+}
+
 .btn-logout {
     background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
     width: auto;
@@ -240,6 +244,22 @@ body {
 .teacher-actions h3,
 .student-actions h3 {
     margin-bottom: 10px;
+}
+
+.action-links {
+    margin-top: 15px;
+}
+
+.action-links .btn {
+    width: auto;
+    padding: 12px 24px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.action-links .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
 }
 
 /* Landing Page Styles */
