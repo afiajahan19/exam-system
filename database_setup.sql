@@ -65,5 +65,39 @@ CREATE TABLE IF NOT EXISTS options (
     INDEX idx_is_correct (is_correct)
 );
 
+-- Create exam_attempts table
+CREATE TABLE IF NOT EXISTS exam_attempts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    exam_room_id INT NOT NULL,
+    student_id INT NOT NULL,
+    started_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    submitted_at TIMESTAMP NULL,
+    score INT DEFAULT NULL,
+    FOREIGN KEY (exam_room_id) REFERENCES exam_rooms(id) ON DELETE CASCADE,
+    FOREIGN KEY (student_id) REFERENCES users(id) ON DELETE CASCADE,
+    INDEX idx_exam_room_id (exam_room_id),
+    INDEX idx_student_id (student_id),
+    INDEX idx_started_at (started_at),
+    UNIQUE KEY unique_attempt (exam_room_id, student_id)
+);
+
+-- Create answers table
+CREATE TABLE IF NOT EXISTS answers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    attempt_id INT NOT NULL,
+    question_id INT NOT NULL,
+    selected_option_id INT NULL,
+    descriptive_answer TEXT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (attempt_id) REFERENCES exam_attempts(id) ON DELETE CASCADE,
+    FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE CASCADE,
+    FOREIGN KEY (selected_option_id) REFERENCES options(id) ON DELETE SET NULL,
+    INDEX idx_attempt_id (attempt_id),
+    INDEX idx_question_id (question_id),
+    INDEX idx_selected_option_id (selected_option_id),
+    UNIQUE KEY unique_answer (attempt_id, question_id)
+);
+
 -- Display success message
 SELECT 'Database and tables created successfully!' as message;

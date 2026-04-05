@@ -234,12 +234,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['join_room'])) {
                         <span class="detail-value"><?php echo date('M j, Y H:i', strtotime($room_details['created_at'])); ?></span>
                     </div>
                     
-                    <button class="btn start-exam-btn" onclick="alert('Exam functionality will be implemented in the next module.')">
+                    <button class="btn start-exam-btn" onclick="startExam()">
                         Start Exam
                     </button>
                 </div>
             </div>
         <?php endif; ?>
     </div>
+    
+    <script>
+        function startExam() {
+            <?php if ($room_details): ?>
+                window.location.href = 'exam.php?exam_room_id=<?php echo $room_details['id']; ?>';
+            <?php endif; ?>
+        }
+    </script>
 </body>
 </html>
