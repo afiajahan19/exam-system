@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Online Examination System - Authentication Module
 
 A complete PHP-based authentication system for an online examination platform built with core PHP, MySQL, and XAMPP.
@@ -179,3 +180,6 @@ error_reporting(E_ALL);
 ## License
 
 This project is open-source and available under the MIT License.
+=======
+# exam-system
+>>>>>>> b9621fcf94bd418c8b01460d05f7509774a0ecbf
