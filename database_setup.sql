@@ -41,5 +41,29 @@ CREATE TABLE IF NOT EXISTS exam_rooms (
     INDEX idx_created_by (created_by)
 );
 
+-- Create questions table
+CREATE TABLE IF NOT EXISTS questions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    exam_room_id INT NOT NULL,
+    question_text TEXT NOT NULL,
+    question_type ENUM('mcq', 'descriptive') NOT NULL DEFAULT 'mcq',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (exam_room_id) REFERENCES exam_rooms(id) ON DELETE CASCADE,
+    INDEX idx_exam_room_id (exam_room_id),
+    INDEX idx_question_type (question_type)
+);
+
+-- Create options table for MCQ questions
+CREATE TABLE IF NOT EXISTS options (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    question_id INT NOT NULL,
+    option_text TEXT NOT NULL,
+    is_correct BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE CASCADE,
+    INDEX idx_question_id (question_id),
+    INDEX idx_is_correct (is_correct)
+);
+
 -- Display success message
 SELECT 'Database and tables created successfully!' as message;

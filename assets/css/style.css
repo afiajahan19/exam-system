@@ -95,7 +95,7 @@ body {
 }
 
 .btn-secondary {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
 }
 
 .btn-success {
@@ -107,6 +107,16 @@ body {
     width: auto;
     padding: 8px 20px;
     font-size: 14px;
+}
+
+.btn-small {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+.question-count {
+    font-weight: 600;
+    color: #007bff;
 }
 
 /* Alerts */

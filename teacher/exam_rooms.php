@@ -204,17 +204,36 @@ $exam_rooms = getTeacherExamRooms($_SESSION['user_id']);
                             <th>Subject</th>
                             <th>Room Code</th>
                             <th>Duration</th>
+                            <th>Questions</th>
                             <th>Created</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($exam_rooms as $room): ?>
+                            <?php 
+                            $question_count = 0;
+                            try {
+                                $stmt = $conn->prepare("SELECT COUNT(*) as count FROM questions WHERE exam_room_id = ?");
+                                $stmt->execute([$room['id']]);
+                                $question_count = $stmt->fetch()['count'];
+                            } catch (Exception $e) {
+                                // Handle error silently
+                            }
+                            ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($room['title']); ?></td>
                                 <td><?php echo htmlspecialchars($room['subject']); ?></td>
                                 <td><span class="room-code"><?php echo htmlspecialchars($room['room_code']); ?></span></td>
                                 <td><?php echo $room['duration']; ?> minutes</td>
+                                <td>
+                                    <span class="question-count"><?php echo $question_count; ?></span> questions
+                                </td>
                                 <td><?php echo date('M j, Y H:i', strtotime($room['created_at'])); ?></td>
+                                <td>
+                                    <a href="add_question.php?exam_room_id=<?php echo $room['id']; ?>" class="btn btn-small" style="padding: 6px 12px; font-size: 12px; margin-right: 5px;">Add Questions</a>
+                                    <a href="upload_ocr.php" class="btn btn-small btn-success" style="padding: 6px 12px; font-size: 12px;">OCR Upload</a>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

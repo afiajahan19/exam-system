@@ -50,7 +50,9 @@ requireLogin();
                         <h3>Teacher Actions:</h3>
                         <div class="action-links">
                             <a href="../teacher/exam_rooms.php" class="btn btn-primary">Manage Exam Rooms</a>
-                            <p style="margin-top: 10px; color: #666;">Create and manage exam rooms for your students.</p>
+                            <a href="../teacher/add_question.php" class="btn btn-success">Add Questions</a>
+                            <a href="../teacher/upload_ocr.php" class="btn btn-secondary">OCR Upload</a>
+                            <p style="margin-top: 10px; color: #666;">Create exam rooms, add questions manually, or upload question papers for OCR processing.</p>
                         </div>
                     </div>
                 <?php else: ?>
